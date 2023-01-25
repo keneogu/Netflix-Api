@@ -10,7 +10,16 @@ const cors = require('cors');
 app.use(cors());
 app.use(express.json());
 
+// routes
+const authRouter = require('./routes/auth');
+
+
 // middleware
+const errorHandlerMiddleware = require('./middleware/errorHandler');
+
+app.use('/api/v1/auth', authRouter)
+
+app.use(errorHandlerMiddleware);
 
 const PORT = process.env.PORT || 5000;
 
